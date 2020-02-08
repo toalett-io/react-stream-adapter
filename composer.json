@@ -1,0 +1,21 @@
+{
+    "name": "joopschilder/reactphp-input-stream",
+    "description": "Wraps a non-blocking input to behave like a stream so it can be used in a ReactPHP EventLoop",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Joop Schilder",
+            "email": "jnmschilder@protonmail.com"
+        }
+    ],
+    "require": {
+        "react/event-loop": "^1.1",
+        "react/stream": "^1.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "JoopSchilder\\React\\Stream\\NonBlockingInput\\": "src"
+        }
+    }
+}
