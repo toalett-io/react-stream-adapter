@@ -27,9 +27,9 @@ final class ReadableNonBlockingInputStream extends EventEmitter implements Reada
 
 	private ?TimerInterface $periodicTimer = null;
 
-	private bool $closed = false;
+	private bool $isClosed = false;
 
-	private bool $listening = false;
+	private bool $isListening = false;
 
 
 	/**
@@ -48,7 +48,7 @@ final class ReadableNonBlockingInputStream extends EventEmitter implements Reada
 
 	public function isReadable()
 	{
-		return !$this->closed;
+		return !$this->isClosed;
 	}
 
 
@@ -58,13 +58,13 @@ final class ReadableNonBlockingInputStream extends EventEmitter implements Reada
 	 */
 	public function pause()
 	{
-		if (!$this->listening) {
+		if (!$this->isListening) {
 			return;
 		}
 
 		$this->input->close();
 		$this->loop->cancelTimer($this->periodicTimer);
-		$this->listening = false;
+		$this->isListening = false;
 	}
 
 
@@ -74,7 +74,7 @@ final class ReadableNonBlockingInputStream extends EventEmitter implements Reada
 	 */
 	public function resume()
 	{
-		if ($this->listening || $this->closed) {
+		if ($this->isListening || $this->isClosed) {
 			return;
 		}
 
@@ -88,7 +88,7 @@ final class ReadableNonBlockingInputStream extends EventEmitter implements Reada
 			}
 		);
 
-		$this->listening = true;
+		$this->isListening = true;
 	}
 
 
@@ -109,11 +109,11 @@ final class ReadableNonBlockingInputStream extends EventEmitter implements Reada
 	 */
 	public function close()
 	{
-		if ($this->closed) {
+		if ($this->isClosed) {
 			return;
 		}
 
-		$this->closed = true;
+		$this->isClosed = true;
 
 		$this->emit('close');
 		$this->pause();
@@ -123,7 +123,7 @@ final class ReadableNonBlockingInputStream extends EventEmitter implements Reada
 	}
 
 
-	private function read(): ?PayloadInterface
+	private function read(): ?object
 	{
 		try {
 			return $this->input->select();

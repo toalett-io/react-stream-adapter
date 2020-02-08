@@ -8,8 +8,8 @@ interface NonBlockingInputInterface
 	function open(): void;
 
 
-	function select(): ?PayloadInterface;
-	
+	function select(): ?object;
+
 
 	function close(): void;
 
