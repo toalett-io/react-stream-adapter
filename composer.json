@@ -1,22 +1,36 @@
 {
-  "name": "joopschilder/reactphp-input-stream",
-  "description": "Wraps a non-blocking input to behave like a stream so it can be used in a ReactPHP EventLoop",
+  "name": "toalett/react-stream-adapter",
   "type": "library",
+  "description": "Use any data source as a stream with ReactPHP",
+  "keywords": [
+    "react",
+    "reactphp",
+    "event-driven",
+    "non-blocking",
+    "readable",
+    "eventloop",
+    "io",
+    "nio",
+    "stream",
+    "source",
+    "adapter"
+  ],
+  "homepage": "https://github.com/toalett-io/react-stream-adapter",
   "license": "MIT",
   "authors": [
     {
       "name": "Joop Schilder",
-      "email": "jnmschilder@protonmail.com"
+      "email": "jnmschilder@protonmail.com",
+      "homepage": "https://joopschilder.nl/"
     }
   ],
-  "require": {
-    "php": "^7.4",
-    "react/event-loop": "^1.1",
-    "react/stream": "^1.1"
-  },
   "autoload": {
     "psr-4": {
-      "JoopSchilder\\React\\Stream\\NonBlockingInput\\": "src"
+      "Toalett\\React\\Stream\\": "src"
     }
+  },
+  "require": {
+    "php": "^7.4",
+    "react/stream": "^1.0"
   }
 }
